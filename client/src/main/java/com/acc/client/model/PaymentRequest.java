@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 public class PaymentRequest {
     private String officeName;
     private LocalDateTime dateTime;
-    private double sum;
+    private double amount;
 
     public PaymentRequest(String officeName) {
         this.officeName = officeName;
         this.dateTime = PaymentGenerated.generatedRandomDate();
-        this.sum = PaymentGenerated.generatedRandomSum();
+        this.amount = PaymentGenerated.generatedRandomSum();
     }
 }

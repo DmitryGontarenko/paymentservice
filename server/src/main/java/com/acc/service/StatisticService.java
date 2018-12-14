@@ -20,35 +20,40 @@ public class StatisticService {
                              double commission,
                              LocalDateTime dateTime,
                              String officeName) {
-        // getOrDefault вернет указанное значение по умолчанию, если с таким ключем нет
-        StatisticObject officeStatistic = officeStatisticHashMap
-                .getOrDefault(officeName, new StatisticObject(amount, commission));
-        officeStatistic.addStatistic(amount, commission); // добавляем сумму и комиссию в статистику
+        // TODO: synchronized?
+        synchronized (this) {
+            // getOrDefault вернет указанное значение по умолчанию, если с таким ключем нет
+            StatisticObject officeStatistic = officeStatisticHashMap
+                    .getOrDefault(officeName, new StatisticObject(amount, commission));
+            officeStatistic.addStatistic(amount, commission); // добавляем сумму и комиссию в статистику
+            officeStatisticHashMap.put(officeName, officeStatistic);
 
-        LocalDate localDate = dateTime.toLocalDate(); // указываем ткущую дату
-        StatisticObject dateStatistic = dateStatisticHashMap
-                .getOrDefault(localDate, new StatisticObject(amount, commission));
-        dateStatistic.addStatistic(amount, commission);
-
-        dateStatisticHashMap.put(localDate, dateStatistic);
+            LocalDate localDate = dateTime.toLocalDate(); // указываем дату
+            StatisticObject dateStatistic = dateStatisticHashMap
+                    .getOrDefault(localDate, new StatisticObject(amount, commission));
+            dateStatistic.addStatistic(amount, commission);
+            dateStatisticHashMap.put(localDate, dateStatistic);
+        }
     }
 
     public StatisticResponse collectionStatistic() {
-        StatisticResponse response = new StatisticResponse();
-        // ответ по точку продаж
-        officeStatisticHashMap.forEach((k, v) -> response.getOfficeStatResponsesList().add(
-                new OfficeStatResponse(k, v.getNumberOfPayments(), v.getTotalAmount(), v.getTotalCommission())
-        ));
-        // после запроса статистика очищается
-        officeStatisticHashMap = new HashMap<>();
+        synchronized (this) {
+            StatisticResponse response = new StatisticResponse();
+            // ответ по точку продаж
+            officeStatisticHashMap.forEach((office, v) -> response.getOfficeStatResponsesList().add(
+                    new OfficeStatResponse(office, v.getNumberOfPayments(), v.getTotalAmount(), v.getTotalCommission())
+            ));
+            // после запроса статистика очищается
+            officeStatisticHashMap = new HashMap<>();
 
-        // ответ по дате
-        dateStatisticHashMap.forEach((k, v) -> response.getDataStatResponseList().add(
-                new DataStatResponse(k, v.getNumberOfPayments(), v.getTotalAmount(), v.getTotalCommission())
-        ));
-        // после запроса статистика очищается
-        dateStatisticHashMap = new HashMap<>();
+            // ответ по дате
+            dateStatisticHashMap.forEach((date, v) -> response.getDataStatResponseList().add(
+                    new DataStatResponse(date, v.getNumberOfPayments(), v.getTotalAmount(), v.getTotalCommission())
+            ));
+            // после запроса статистика очищается
+            dateStatisticHashMap = new HashMap<>();
 
-        return response;
+            return response;
+        }
     }
 }

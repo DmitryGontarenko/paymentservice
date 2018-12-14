@@ -19,10 +19,9 @@ public class ServerController {
     @PostMapping("/pay")
     public @ResponseBody
     PaymentResponse payResp(@RequestBody PaymentRequest paymentRequest) {
-
         PaymentResponse paymentResponse = new PaymentResponse(); // экземпляр ответа о платеже
         paymentResponse.setId(UUID.randomUUID().toString()); // устанавливем рандомное значение идентификатора в ответ о платеже
-        double commission = paymentRequest.getAmount() * 0.0015d; // считаем комиссию
+        double commission = paymentRequest.getAmount() * 0.0015; // считаем комиссию
         paymentResponse.setCommission(commission); // устанавливаем комиссию в 0.015% в ответ о платеже
 
         statisticService.addStatistic(paymentRequest.getAmount(),

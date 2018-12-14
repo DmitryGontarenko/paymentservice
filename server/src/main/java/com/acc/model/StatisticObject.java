@@ -12,9 +12,11 @@ public class StatisticObject {
     }
 
     public void addStatistic(double amount, double commission) {
-        numberOfPayments++;
-        totalAmount = amount;
-        totalCommission = commission;
+        synchronized (this) {
+            numberOfPayments++;
+            totalAmount = amount;
+            totalCommission = commission;
+        }
     }
 
     public int getNumberOfPayments() {

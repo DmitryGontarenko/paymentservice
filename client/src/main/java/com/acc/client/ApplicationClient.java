@@ -52,7 +52,7 @@ public class ApplicationClient implements CommandLineRunner {
                     if (responseBody != null && responseBody.getId() != null) {
                         String content = String.join(",",
                                                         responseBody.getId(),
-                                                        getStringView(paymentRequest.getSum()),
+                                                        getStringView(paymentRequest.getAmount()),
                                                         paymentRequest.getDateTime().toString(),
                                                         paymentRequest.getOfficeName(),
                                                         getStringView(responseBody.getCommission()));
@@ -71,7 +71,6 @@ public class ApplicationClient implements CommandLineRunner {
 
     }
 
-    // TODO: перенесети в сервис
     private String getStringView(double number) {
         return String.format("%.2f", number);
     }
