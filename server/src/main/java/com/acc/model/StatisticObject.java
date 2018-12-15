@@ -2,7 +2,7 @@ package com.acc.model;
 
 public class StatisticObject {
 
-    private int numberOfPayments = 1; // номер платежа
+    private int numberOfPayments = 0; // номер платежа
     private double totalAmount; // сумма платежа
     private double totalCommission; // сумма комиссии
 
@@ -12,11 +12,9 @@ public class StatisticObject {
     }
 
     public void addStatistic(double amount, double commission) {
-        synchronized (this) {
-            numberOfPayments++;
-            totalAmount = amount;
-            totalCommission = commission;
-        }
+        numberOfPayments++;
+        totalAmount = amount;
+        totalCommission = commission;
     }
 
     public int getNumberOfPayments() {
