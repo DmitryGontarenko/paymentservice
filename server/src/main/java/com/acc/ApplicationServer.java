@@ -1,5 +1,6 @@
 package com.acc;
 
+import com.acc.validation.ValidationServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +13,11 @@ import java.util.HashMap;
 public class ApplicationServer {
 
     public static void main(String[] args) {
-        if (args.length != 1) {
-            log.warn("Set the port");
-            return;
-        }
+//        if (args.length != 1) {
+//            log.warn("Set the port");
+//            return;
+//        }
+        ValidationServer.validationPort(args);
 
         HashMap<String, Object> props = new HashMap<>();
         props.put("server.port", Integer.valueOf(args[0]));
