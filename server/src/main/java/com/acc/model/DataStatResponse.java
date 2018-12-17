@@ -10,8 +10,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DataStatResponse {
-    private LocalDate date; // дата
-    private int numberOfPayments; // количество платажей
-    private double totalAmount; // сумма платежей
-    private double totalCommission; // сумма комиссий
+    private LocalDate date;
+    private int numberOfPayments;
+    private double totalAmount;
+    private double totalCommission;
 }

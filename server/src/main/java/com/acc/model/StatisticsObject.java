@@ -1,17 +1,17 @@
 package com.acc.model;
 
-public class StatisticObject {
+public class StatisticsObject {
 
-    private int numberOfPayments = 0; // номер платежа
-    private double totalAmount; // сумма платежа
-    private double totalCommission; // сумма комиссии
+    private int numberOfPayments = 0;
+    private double totalAmount;
+    private double totalCommission;
 
-    public StatisticObject(double totalAmount, double totalCommission) {
+    public StatisticsObject(double totalAmount, double totalCommission) {
         this.totalAmount = totalAmount;
         this.totalCommission = totalCommission;
     }
 
-    public void addStatistic(double amount, double commission) {
+    public void addStatistics(double amount, double commission) {
         numberOfPayments++;
         totalAmount = amount;
         totalCommission = commission;

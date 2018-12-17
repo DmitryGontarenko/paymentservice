@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class StatisticResponse {
+public class StatisticsResponse {
     private List<OfficeStatResponse> officeStatResponsesList = new ArrayList<>();
     private List<DataStatResponse> dataStatResponseList = new ArrayList<>();
 }

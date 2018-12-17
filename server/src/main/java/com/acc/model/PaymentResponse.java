@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class PaymentResponse {
-    private String id; // идентификатор платежа
-    private double commission; // сумма комиссии
+    private String id;
+    private double commission;
 
     public void setCommission(double amount) {
         this.commission = amount * 0.0015;

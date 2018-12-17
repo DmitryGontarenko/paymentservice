@@ -16,6 +16,7 @@ public class ApplicationServer {
             log.warn("Set the port");
             return;
         }
+
         HashMap<String, Object> props = new HashMap<>();
         props.put("server.port", Integer.valueOf(args[0]));
         new SpringApplicationBuilder()

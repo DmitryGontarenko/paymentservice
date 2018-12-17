@@ -2,8 +2,8 @@ package com.acc.controller;
 
 import com.acc.model.PaymentRequest;
 import com.acc.model.PaymentResponse;
-import com.acc.model.StatisticResponse;
-import com.acc.service.StatisticService;
+import com.acc.model.StatisticsResponse;
+import com.acc.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,16 +16,16 @@ import java.util.UUID;
 public class ServerController {
 
     @Autowired
-    private StatisticService statisticService;
+    private StatisticsService statisticsService;
 
     @PostMapping("/pay")
     public
-    PaymentResponse payResp(@RequestBody PaymentRequest paymentRequest) {
+    PaymentResponse payResponse(@RequestBody PaymentRequest paymentRequest) {
         PaymentResponse paymentResponse = new PaymentResponse();
-        paymentResponse.setId(UUID.randomUUID().toString()); // устанавливем рандомное значение идентификатора в ответ о платеже
+        paymentResponse.setId(UUID.randomUUID().toString());
         paymentResponse.setCommission(paymentRequest.getAmount()); // комиссия равна 0.15% от полученной суммы
 
-        statisticService.addStatistic(paymentRequest.getOfficeName(),
+        statisticsService.addStatistics(paymentRequest.getOfficeName(),
                                         paymentRequest.getAmount(),
                                         paymentResponse.getCommission(),
                                         paymentRequest.getDateTime());
@@ -33,8 +33,8 @@ public class ServerController {
     }
 
     @GetMapping("/stat")
-    public StatisticResponse getStat() {
-        return statisticService.collectStatistic();
+    public StatisticsResponse getStatistics() {
+        return statisticsService.collectStatistics();
     }
 
 

@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OfficeStatResponse { // ответ по каждой точке продаж
-    private String office; // точка продажи
-    private int numberOfPayments; // количество платежей
-    private double totalAmount; // сумма платежей
-    private double totalCommission; // сумма комссии
+public class OfficeStatResponse {
+    private String office;
+    private int numberOfPayments;
+    private double totalAmount;
+    private double totalCommission;
 
 }

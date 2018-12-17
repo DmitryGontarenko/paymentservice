@@ -11,13 +11,11 @@ public class PaymentGenerate {
     private static final double MIN_SUM = 10000;
     private static final double MAX_SUM = 100000;
 
-    // генерирует случайную дату в заданном диапозоне
     public static LocalDateTime generateRandomDate() {
         long randomDateInEpochSeconds = ThreadLocalRandom.current().nextLong(START_OF_LAST_YEAR, START_OF_CURRENT_YEAR);
         return Instant.ofEpochSecond(randomDateInEpochSeconds).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
-    // генерирует случайную сумму в заданном диапозоне
     public static double generateRandomAmount() {
         return ThreadLocalRandom.current().nextDouble(MIN_SUM, MAX_SUM);
     }
