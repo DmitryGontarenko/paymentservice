@@ -21,10 +21,7 @@ public class ServerController {
     @PostMapping("/pay")
     public
     PaymentResponse payResponse(@RequestBody PaymentRequest paymentRequest) {
-        PaymentResponse paymentResponse = new PaymentResponse();
-        paymentResponse.setId(UUID.randomUUID().toString());
-        paymentResponse.setCommission(paymentRequest.getAmount()); // комиссия равна 0.15% от полученной суммы
-
+        PaymentResponse paymentResponse = new PaymentResponse(paymentRequest.getAmount());
         statisticsService.addStatistics(paymentRequest.getOfficeName(),
                                         paymentRequest.getAmount(),
                                         paymentResponse.getCommission(),
