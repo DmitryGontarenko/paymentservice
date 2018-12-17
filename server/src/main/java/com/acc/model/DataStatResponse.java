@@ -7,11 +7,15 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class DataStatResponse {
+public class DataStatResponse extends DataOfficeStatResponse {
     private LocalDate date;
-    private int numberOfPayments;
-    private double totalAmount;
-    private double totalCommission;
+
+    public DataStatResponse() {
+    }
+
+    public DataStatResponse(int numberOfPayments, double totalAmount, double totalCommission, LocalDate date) {
+        super(numberOfPayments, totalAmount, totalCommission);
+        this.date = date;
+    }
+
 }

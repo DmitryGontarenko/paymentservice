@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class OfficeStatResponse {
+public class OfficeStatResponse extends DataOfficeStatResponse {
     private String office;
-    private int numberOfPayments;
-    private double totalAmount;
-    private double totalCommission;
 
+    public OfficeStatResponse() {
+    }
+
+    public OfficeStatResponse(int numberOfPayments, double totalAmount, double totalCommission, String office) {
+        super(numberOfPayments, totalAmount, totalCommission);
+        this.office = office;
+    }
 }

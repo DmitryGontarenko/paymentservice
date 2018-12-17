@@ -37,14 +37,14 @@ public class StatisticsServiceImpl implements StatisticsService {
         StatisticsResponse response = new StatisticsResponse();
 
         officeStatisticsHashMap.forEach((office, v) -> response.getOfficeStatResponsesList().add(
-                new OfficeStatResponse(office, v.getNumberOfPayments(), v.getTotalAmount(), v.getTotalCommission())
+                new OfficeStatResponse(v.getNumberOfPayments(), v.getTotalCommission() , v.getTotalAmount(), office)
         ));
 
         officeStatisticsHashMap = new HashMap<>();
 
 
         dateStatisticsHashMap.forEach((date, v) -> response.getDataStatResponseList().add(
-                new DataStatResponse(date, v.getNumberOfPayments(), v.getTotalAmount(), v.getTotalCommission())
+                new DataStatResponse(v.getNumberOfPayments(), v.getTotalCommission(), v.getTotalAmount(), date)
         ));
 
         dateStatisticsHashMap = new HashMap<>();
