@@ -1,9 +1,10 @@
 # paymentservice
 
 ### Для запуска приложения требуется:
-1. выполнить команду package для Server и Client (через консоль mvn package или в Maven Project -> Lifecycle)
-2. запустить сервер командой `java -jar server/target/server-1.0-SNAPSHOT.jar 3089`
-3. запустить клиента командой `java -jar client/target/client-1.0-SNAPSHOT.jar client/offices.txt  10 http://localhost:3089/pay payments.txt`
+1. установить плагин Lombok для вашей IDE.
+2. выполнить команду package для Server и Client (через консоль mvn package или в Maven Project -> Lifecycle)
+3. запустить сервер командой `java -jar server/target/server-1.0-SNAPSHOT.jar 3089`
+4. запустить клиента командой `java -jar client/target/client-1.0-SNAPSHOT.jar client/offices.txt  10 http://localhost:3089/pay payments.txt`
 
 > Или же можно указать параметры при запуске проекта в Run/Debug Configurations:   
 > для Сервера: указывается порт (например 3089)   
