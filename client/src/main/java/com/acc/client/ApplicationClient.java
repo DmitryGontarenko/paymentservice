@@ -2,6 +2,7 @@ package com.acc.client;
 
 import com.acc.client.model.PaymentResponse;
 import com.acc.client.service.PaymentService;
+import com.acc.client.validation.ValidationClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,10 +29,8 @@ public class ApplicationClient implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (args.length != 4) {
-            log.warn("Please, specify 4 parameters, now there are only {}", args.length);
-            return;
-        }
+
+        ValidationClient.validationArgs(args);
 
         String pathToFileToWrite = args[3];
         if (Files.notExists(Paths.get(pathToFileToWrite))) {

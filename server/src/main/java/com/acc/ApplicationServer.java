@@ -13,10 +13,7 @@ import java.util.HashMap;
 public class ApplicationServer {
 
     public static void main(String[] args) {
-//        if (args.length != 1) {
-//            log.warn("Set the port");
-//            return;
-//        }
+
         ValidationServer.validationPort(args);
 
         HashMap<String, Object> props = new HashMap<>();
