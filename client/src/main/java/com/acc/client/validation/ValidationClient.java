@@ -4,18 +4,40 @@ import org.apache.commons.io.FilenameUtils;
 
 public class ValidationClient {
 
-    public static void validationArgs (String[] args) {
+    private static String pathOfficeFile = null;
+    private static Long payments = 0L;
+    private static String urlPost = null;
+    private static String pathPaymentsFile = null;
 
-        String fileName = args[0];
-        int payments = 0;
+    public static String getPathOfficeFile() {
+        return pathOfficeFile;
+    }
+
+    public static Long getPayments() {
+        return payments;
+    }
+
+    public static String getUrlPost() {
+        return urlPost;
+    }
+
+    public static String getPathPaymentsFile() {
+        return pathPaymentsFile;
+    }
+
+    public static void validationArgs (String[] args) {
 
         try {
             if (args.length == 4) {
-                String checkName = FilenameUtils.getExtension(fileName);
+                pathOfficeFile = args[0];
+                String checkName = FilenameUtils.getExtension(pathOfficeFile);
                 if (checkName.equals("txt")) {
-                    payments = Integer.parseInt(args[1]);
+                    payments = Long.parseLong(args[1]);
                     if (payments < 0) {
                         throw new NumberFormatException("Payment can not be less than zero");
+                    } else {
+                        urlPost = args[2];
+                        pathPaymentsFile = args[3];
                     }
                 } else {
                     throw new NumberFormatException("File must have the extension .txt");

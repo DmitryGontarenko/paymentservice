@@ -32,7 +32,7 @@ public class ApplicationClient implements CommandLineRunner {
 
         ValidationClient.validationArgs(args);
 
-        String pathToFileToWrite = args[3];
+        String pathToFileToWrite = ValidationClient.getPathPaymentsFile();
         if (Files.notExists(Paths.get(pathToFileToWrite))) {
             Files.createFile(Paths.get(pathToFileToWrite));
         }
@@ -40,10 +40,9 @@ public class ApplicationClient implements CommandLineRunner {
         RestTemplate template = new RestTemplate();
 
 
-        paymentService.generatePayment(args[0], Long.valueOf(args[1])).forEach(paymentRequest -> {
+        paymentService.generatePayment(ValidationClient.getPathOfficeFile(), ValidationClient.getPayments()).forEach(paymentRequest -> {
             try {
-
-                ResponseEntity<PaymentResponse> responseEntity = template.postForEntity(args[2], paymentRequest, PaymentResponse.class);
+                ResponseEntity<PaymentResponse> responseEntity = template.postForEntity(ValidationClient.getUrlPost(), paymentRequest, PaymentResponse.class);
                 if (responseEntity.getStatusCode().is2xxSuccessful()) {
                     PaymentResponse responseBody = responseEntity.getBody();
                     if (responseBody != null && responseBody.getId() != null) {
@@ -56,7 +55,7 @@ public class ApplicationClient implements CommandLineRunner {
                                                         getStringView(responseBody.getCommission()));
                         content += "\r\n";
                         Files.write(
-                                Paths.get(args[3]),
+                                Paths.get(ValidationClient.getPathPaymentsFile()),
                                 content.getBytes(),
                                 StandardOpenOption.APPEND);
                     }
