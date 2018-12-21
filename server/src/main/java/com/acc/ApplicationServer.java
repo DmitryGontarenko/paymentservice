@@ -17,7 +17,7 @@ public class ApplicationServer {
         ValidationServer.validationPort(args);
 
         HashMap<String, Object> props = new HashMap<>();
-        props.put("server.port", ValidationServer.getPort());
+        props.put("server.port", ValidationServer.port);
         new SpringApplicationBuilder()
                 .sources(ApplicationServer.class)
                 .properties(props)

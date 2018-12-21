@@ -4,26 +4,10 @@ import org.apache.commons.io.FilenameUtils;
 
 public class ValidationClient {
 
-    private static String pathOfficeFile = null;
-    private static Long payments = 0L;
-    private static String urlPost = null;
-    private static String pathPaymentsFile = null;
-
-    public static String getPathOfficeFile() {
-        return pathOfficeFile;
-    }
-
-    public static Long getPayments() {
-        return payments;
-    }
-
-    public static String getUrlPost() {
-        return urlPost;
-    }
-
-    public static String getPathPaymentsFile() {
-        return pathPaymentsFile;
-    }
+    public static String pathOfficeFile = null;
+    public static Long payments = 0L;
+    public static String urlPost = null;
+    public static String pathPaymentsFile = null;
 
     public static void validationArgs (String[] args) {
 

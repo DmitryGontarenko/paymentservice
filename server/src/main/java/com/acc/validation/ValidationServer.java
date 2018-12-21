@@ -2,11 +2,7 @@ package com.acc.validation;
 
 public class ValidationServer {
 
-    private static int port = 8080;
-
-    public static int getPort() {
-        return port;
-    }
+    public static int port = 8080;
 
     public static void validationPort(String[] args) {
 
